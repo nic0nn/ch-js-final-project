@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto Mono";
+}
+
+.welcome {
+  height: 50%;
+  width: 50%;
+  margin: 0 auto;
+}
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <script
+      src="https://kit.fontawesome.com/44689583db.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>El juego del ahorcado</title>
+  </head>
+  <body class="container-fluid bg-dark text-white">
+    <div class="container h-100 d-flex align-items-center">
+      <div
+        class="
+          welcome
+          row
+          bg-dark
+          rounded
+          d-flex
+          flex-column
+          justify-content-center
+        "
+      >
+        <h1>¡BIENVENIDO!</h1>
+        <p>Ingrese su nombre para comenzar a jugar</p>
+        <div class="input-group mb-3">
+          <i class="input-group-text d-flex fa fa-user"></i>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre de usuario"
+            aria-label="username"
+            name="username"
+            id="username"
+          />
+        </div>
+        <div class="btn btn-danger" id="login">¡JUGAR!</div>
+      </div>
+    </div>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script type="module" src="assets/js/scripts.js"></script>
+  </body>
+</html>
