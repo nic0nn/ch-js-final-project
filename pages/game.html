@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../assets/css/bootstrap.min.css" />
+    <script
+      src="https://kit.fontawesome.com/44689583db.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="./../assets/css/styles.css" />
+    <title>El juego del ahorcado</title>
+  </head>
+  <body class="container-fluid bg-dark text-white">
+    <div class="game h-100">
+      <div class="header">
+        <div class="buttons">
+          <div class="btn btn-secondary" id="goback">CATEGORÍAS</div>
+          <div class="btn btn-secondary" id="exit">SALIR</div>
+        </div>
+        <div class="profile">
+          <div class="username"></div>
+          <div class="category"></div>
+          <div class="score"></div>
+        </div>
+      </div>
+      <div class="hanged">
+        <div class="body-container">
+          <div class="head"></div>
+          <div class="upper">
+            <div class="right-arm"></div>
+            <div class="body"></div>
+            <div class="left-arm"></div>
+          </div>
+          <div class="right-leg"></div>
+          <div class="left-leg"></div>
+        </div>
+      </div>
+      <div class="board">
+        <div class="letters"></div>
+        <div class="attempts"><span id="tryNumber"></span></div>
+        <div class="d-flex flex-column align-items-center game-lost">
+          <span class="you-lost">¡HAS PERDIDO!</span>
+          <span 
+            >La palabra correcta es: <span class="current-word"></span
+          ></span>
+        </div>
+        <div class="you-win">¡HAS GANADO!</div>
+      </div>
+      <div class="input">
+        <div class="already-entered">
+          <p>Letras ingresadas: <span id="already-entered"></span></p>
+        </div>
+        <div class="form-group row">
+          <label for="letter" class="col-sm-4 col-form-label"
+            >Ingrese una letra:</label
+          >
+          <div class="col-sm-2">
+            <input type="text" class="form-control" id="letter" name="letter" />
+          </div>
+          <div class="actions col-sm-6">
+            <button id="change" class="btn btn-danger">
+              Cambiar de palabra
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./../assets/js/bootstrap.min.js"></script>
+    <script type="module" src="./../assets/js/modules/game.js"></script>
+  </body>
+</html>

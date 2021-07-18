@@ -17,6 +17,7 @@ export const deleteState = () => {
   localStorage.removeItem("state")
 }
 
+
 export const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }

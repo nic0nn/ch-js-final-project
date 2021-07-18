@@ -1,0 +1,18 @@
+{
+  "name": "js-coderhouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nbastias",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.9",
+    "sass": "^1.35.1"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+}
