@@ -1,4 +1,4 @@
-import { deleteState, getFromState, getRandomInt, setState } from "../utils.js";
+import { deleteState, getFromState, getRandomInt, redirect, setState } from "../utils.js";
 import { CATEGORIES, BODY_PARTS, MAX_ATTEMPTS } from "./constants.js";
 
 const getChars = (currentWord) => {
@@ -10,8 +10,6 @@ const getChars = (currentWord) => {
 
   return chars;
 }
-
-
 export default class HangedGame {
   constructor() {
     this.attempts = 0;
@@ -123,12 +121,12 @@ export default class HangedGame {
   };
 
   handleGoBack = () => {
-    window.location.assign("/pages/categories.html");
+    redirect("./categories.html")
   };
 
   handleExit = () => {
     deleteState();
-    window.location.assign("/index.html");
+    redirect("./../index.html")
   };
 
   changeWord = () => {
@@ -179,6 +177,7 @@ export default class HangedGame {
     this.showLostMessage(false);
 
     const input = document.querySelector("#letter");
+    
     if (MAX_ATTEMPTS === this.attempts) {
       this.showLostMessage(true);
       return;
@@ -202,7 +201,7 @@ export default class HangedGame {
     div.style = `visibility: ${status ? "visible" : "hidden"}`;
   }
 
-  init() {
+  handleGameEvents() {
     const input = document.querySelector("#letter");
     input.addEventListener("keypress", this.handleChange);
     input.focus();
@@ -215,7 +214,11 @@ export default class HangedGame {
 
     const exit = document.querySelector("#exit");
     exit.addEventListener("click", this.handleExit);
+  }
 
+  
+  init() {
+    this.handleGameEvents()
     this.renderResetButton();
     this.update();
   }

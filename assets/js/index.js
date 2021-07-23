@@ -1,10 +1,10 @@
-import { setState } from "./utils.js"
+import { redirect, setState } from "./utils.js"
 
 function login() {
   const input = document.querySelector("#username");
   setState("user", input.value)
   setState("score", 0)
-  window.location.assign("/pages/categories.html");
+  redirect("./pages/categories.html")
 }
 
 function init() {
@@ -15,6 +15,7 @@ function init() {
   input.onkeydown = function(e) {
     if (e.keyCode === 13) login()
   }
+  input.focus()
 }
 
 init()
