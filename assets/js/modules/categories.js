@@ -1,4 +1,4 @@
-import { getFromState, setState } from "../utils.js"
+import { getFromState, redirect, setState } from "../utils.js"
 import { CATEGORIES } from "./constants.js";
 
 export function render() {
@@ -13,7 +13,7 @@ export function render() {
 
       card.addEventListener("click", () => {
         setState("category", key )
-        window.location.assign("/pages/game.html");
+        redirect("./game.html")
       })
       
       const content = document.createElement("p")

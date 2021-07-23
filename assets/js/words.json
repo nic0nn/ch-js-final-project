@@ -1,0 +1,73 @@
+{
+  "comidas": [
+    "lentejas",
+    "locro",
+    "ñoquis",
+    "canelones",
+    "asado",
+    "choripan",
+    "empanadas",
+    "pancho",
+    "pizza",
+    "milanesas",
+    "alfajores",
+    "fideos"
+  ],
+  "superheroes": [
+    "spiderman",
+    "ironman",
+    "thor",
+    "deadpool",
+    "hulk",
+    "tormenta",
+    "aquaman",
+    "batman",
+    "superman",
+    "wolverine"
+  ],
+  "electronica": [
+    "teclado",
+    "notebook",
+    "mouse",
+    "monitor",
+    "parlante",
+    "auriculares",
+    "cargador",
+    "televisor",
+    "decodificador",
+    "antena"
+  ],
+  "deportes": [
+    "basket",
+    "futbol",
+    "tenis",
+    "voley",
+    "polo",
+    "golf",
+    "handball",
+    "boxeo",
+    "natacion"
+  ],
+  "paises": [
+    "argentina",
+    "bolivia",
+    "españa",
+    "paraguay",
+    "brasil",
+    "uruguay",
+    "francia",
+    "italia",
+    "alemania",
+    "portugal",
+    "egipto",
+    "chile",
+    "mexico",
+    "alaska",
+    "groenlandia",
+    "australia",
+    "suiza",
+    "suecia",
+    "nigeria",
+    "turquia"
+  ]
+} 
