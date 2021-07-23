@@ -126,7 +126,7 @@ export default class HangedGame {
 
   handleExit = () => {
     deleteState();
-    redirect("./../index.html")
+    redirect("./../../index.html")
   };
 
   changeWord = () => {
@@ -189,16 +189,30 @@ export default class HangedGame {
   }
 
   showLostMessage(status) {
-    const div = document.querySelector(".game-lost");
-    div.style = `visibility: ${status ? "visible" : "hidden"}`;
+    const container = document.querySelector(".game-results");
+    const result = document.querySelector("#game-result");
+
+    result.innerText = "¡HAS PERDIDO!"
+    result.style = "color: red"
+    container.style = `visibility: ${status ? "visible" : "hidden"}`;
 
     const currentWord = document.querySelector(".current-word");
+    const currentWordContainer =  document.querySelector(".current-word-container");
+
     currentWord.innerText = this.currentWord;
+    currentWordContainer.style = `visibility: ${status ? "visible" : "hidden"}`;
   }
 
   showWinMessage(status) {
-    const div = document.querySelector(".you-win");
+    const div = document.querySelector(".game-results");
+    const result = document.querySelector("#game-result");
+    const currentWord = document.querySelector(".current-word-container");
+    
+    result.innerText = "¡HAS GANADO!"
+    result.style = "color: green"
+    
     div.style = `visibility: ${status ? "visible" : "hidden"}`;
+    currentWord.style = `visibility: hidden`;
   }
 
   handleGameEvents() {

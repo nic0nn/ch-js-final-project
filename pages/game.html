@@ -41,13 +41,19 @@
       <div class="board">
         <div class="letters"></div>
         <div class="attempts"><span id="tryNumber"></span></div>
-        <div class="d-flex flex-column align-items-center game-lost">
+        <!-- <div class="d-flex flex-column align-items-center game-lost">
           <span class="you-lost">¡HAS PERDIDO!</span>
           <span 
             >La palabra correcta es: <span class="current-word"></span
           ></span>
         </div>
-        <div class="you-win">¡HAS GANADO!</div>
+        <div class="you-win">¡HAS GANADO!</div> -->
+        <div class="game-results d-flex flex-column align-items-center">
+          <span id="game-result">¡HAS PERDIDO!</span>
+          <span
+            class="current-word-container">La palabra correcta es: <span class="current-word"></span>
+          </span>
+        </div>
       </div>
       <div class="input">
         <div class="already-entered">

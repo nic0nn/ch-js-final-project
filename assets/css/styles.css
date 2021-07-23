@@ -5,6 +5,7 @@ body {
   height: 100%;
   width: 100%;
   font-family: "Roboto Mono";
+  font-size: 12px;
 }
 
 .welcome {
@@ -135,17 +136,20 @@ body {
   justify-content: space-between;
 }
 
-.you-lost {
-  font-size: 48px;
-  color: red;
-}
-
-.you-win {
-  font-size: 48px;
-  color: green;
+.game-results {
+  display: flex;
+  flex-direction: column;
   visibility: hidden;
 }
 
-.game-lost {
-  visibility: hidden;
+.current-word-container {
+  font-size: 16px;
+}
+
+.current-word {
+  text-transform: uppercase;
+}
+
+#game-result {
+  font-size: 48px;
 }
