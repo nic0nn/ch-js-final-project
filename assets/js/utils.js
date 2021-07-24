@@ -7,7 +7,7 @@ export const setState = (name, value) => {
 export const getFromState = (name) => {
   let s = JSON.parse(localStorage.getItem("state"))
   if (!s) {
-    redirect("index.html")
+    redirect("/")
     return;
   }
   return s[name]
