@@ -126,7 +126,7 @@ export default class HangedGame {
 
   handleExit = () => {
     deleteState();
-    redirect("/")
+    redirect("./../")
   };
 
   changeWord = () => {
