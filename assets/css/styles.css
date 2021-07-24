@@ -30,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 60%;
+  width: 75%;
   margin: 0 auto;
   color: #212529;
   justify-content: space-around;
@@ -152,4 +152,12 @@ body {
 
 #game-result {
   font-size: 48px;
+}
+
+.form-control {
+  text-align: center;
+}
+
+.actions {
+  justify-content: space-around;
 }

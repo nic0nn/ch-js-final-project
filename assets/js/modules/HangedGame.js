@@ -132,7 +132,7 @@ export default class HangedGame {
   changeWord = () => {
     this.attempts = 0;
     this.currentWord = this.category[getRandomInt(0, this.category.length)];
-    this.chars = this.getChars();
+    this.chars = getChars(this.currentWord);
     this.alreadyEntered = [];
     this.currentLetter = null;
     this.isCompleted = false;
