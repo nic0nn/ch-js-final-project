@@ -1,27 +1,22 @@
-import { getFromState, redirect, setState } from "../utils.js"
-import { CATEGORIES } from "./constants.js";
+import { getCategories, redirect, setState } from "../utils.js";
 
-export function render() {
+export async function render() {
+  const categories = await getCategories();
 
-  const user = getFromState("user")
+  for (const key in categories) {
+    if (Object.hasOwnProperty.call(categories, key)) {
+      const card = $(`
+      <div class="card text-card">
+        <p>${key}</p>
+      </div>
+    `).on("click", function () {
+        setState("category", key);
+        redirect("./game.html");
+      });
 
-  const container = document.querySelector("#categories-cards");
-  for (const key in CATEGORIES) {
-    if (Object.hasOwnProperty.call(CATEGORIES, key)) {
-      const card = document.createElement("div")
-      card.className = "card text-card"
-
-      card.addEventListener("click", () => {
-        setState("category", key )
-        redirect("./game.html")
-      })
-      
-      const content = document.createElement("p")
-      content.innerText = key
-      card.appendChild(content)
-      container.appendChild(card)      
+      $("#categories-cards").append(card);
     }
   }
 }
 
-render()
+render();

@@ -1,5 +1,13 @@
-import { deleteState, getFromState, getRandomInt, redirect, setState } from "../utils.js";
-import { CATEGORIES, BODY_PARTS, MAX_ATTEMPTS } from "./constants.js";
+import {
+  deleteState,
+  getCategories,
+  getFromState,
+  getRandomInt,
+  redirect,
+  setState,
+} from "../utils.js";
+
+import { BODY_PARTS, MAX_ATTEMPTS } from "./constants.js";
 
 const getChars = (currentWord) => {
   const letters = currentWord.split("");
@@ -9,60 +17,50 @@ const getChars = (currentWord) => {
   }));
 
   return chars;
-}
+};
+
 export default class HangedGame {
   constructor() {
     this.attempts = 0;
-    this.category = CATEGORIES[getFromState("category")];
-    this.currentWord = this.category[getRandomInt(0, this.category.length)];
-    this.chars = getChars(this.currentWord);
+
     this.alreadyEntered = [];
     this.isCompleted = false;
     this.currentLetter = null;
   }
 
   renderChars() {
-    const positions = document.querySelector(".letters");
-    positions.innerHTML = "";
-    for (let index = 0; index < this.chars.length; index++) {
-      const char = this.chars[index];
-      const underscore = document.createElement("span");
-      underscore.className = "underscore";
-      underscore.innerText = char.visible ? char.letter : "_";
-      positions.appendChild(underscore);
-    }
-  }
-
-  renderCount() {
-    const span = document.querySelector("#tryNumber");
-    span.innerText = `Intentos: ${MAX_ATTEMPTS - this.attempts}`;
-  }
-
-  renderAlreadyEntered() {
-    const container = document.querySelector("#already-entered");
-    container.innerHTML = "";
-
-    this.alreadyEntered.forEach((letter) => {
-      const span = document.createElement("span");
-      span.innerText = letter;
-      container.appendChild(span);
+    const position = $(".letters");
+    position.html("");
+    this.chars.forEach((char) => {
+      position.append(
+        `<span class='underscore'>${char.visible ? char.letter : "_"}</span>`
+      );
     });
   }
 
-  renderResetButton = () => {
-    const actions = document.querySelector(".actions");
-    const reset = document.querySelector(".reset");
+  renderCount() {
+    $("#tryNumber").val(`Intentos: ${MAX_ATTEMPTS - this.attempts}`);
+  }
 
-    const button = reset ? reset : document.createElement("button");
+  renderAlreadyEntered() {
+    const container = $("#already-entered");
+    container.html("");
+    this.alreadyEntered.forEach((letter) => {
+      container.append(`<span>${letter}</span>`);
+    });
+  }
 
-    button.className = "btn btn-danger reset";
-    button.innerText = this.isCompleted ? "Volver a comenzar" : "Reintentar";
-
-    button.addEventListener(
-      "click",
-      this.isCompleted ? this.handleRestart : this.handleReset
-    );
-    actions.prepend(button);
+  hideRetryButton = (status) => {
+    const reset = $(".reset");
+    switch (status) {
+      case true:
+        reset.hide();
+        break;
+      case false:
+        reset.show()
+      default:
+        break;
+    }
   };
 
   handleHangedBoy() {
@@ -70,8 +68,8 @@ export default class HangedGame {
     const parts = this.attempts > 0 ? this.attempts : BODY_PARTS.length;
 
     for (let index = 0; index < parts; index++) {
-      const element = document.querySelector(`.${BODY_PARTS[index]}`);
-      element.style = `visibility: ${visibility}`;
+      const element = $(`.${BODY_PARTS[index]}`);
+      element.css({ visibility: visibility });
     }
   }
 
@@ -99,7 +97,7 @@ export default class HangedGame {
       this.attempts += 1;
     }
 
-    this.currentLetter = letter
+    this.currentLetter = letter;
     this.update();
   };
 
@@ -112,6 +110,7 @@ export default class HangedGame {
       char.visible = false;
     });
 
+    this.hideRetryButton();
     this.update();
   };
 
@@ -121,12 +120,12 @@ export default class HangedGame {
   };
 
   handleGoBack = () => {
-    redirect("./categories.html")
+    redirect("./categories.html");
   };
 
   handleExit = () => {
     deleteState();
-    redirect("./../")
+    redirect("./../");
   };
 
   changeWord = () => {
@@ -137,6 +136,7 @@ export default class HangedGame {
     this.currentLetter = null;
     this.isCompleted = false;
 
+    this.hideRetryButton(false);
     this.update();
   };
 
@@ -148,14 +148,13 @@ export default class HangedGame {
     const oldScore = getFromState("score");
     const score = oldScore + 10 - this.attempts;
     setState("score", score);
-    const category = document.querySelector(".score");
-    category.innerHTML = `<b>Puntaje: </b>${score}`;
+
+    $(`.score`).val(`<b>Puntaje: </b>${score}`);
   };
 
   handleCompleted() {
     this.updateScore();
     this.showWinMessage(true);
-    this.renderResetButton();
   }
 
   update() {
@@ -168,7 +167,8 @@ export default class HangedGame {
     this.isCompleted = this.checkCompleted();
 
     if (this.isCompleted) {
-      this.handleCompleted()
+      this.handleCompleted();
+      this.hideRetryButton(true);
       return;
     }
 
@@ -176,64 +176,59 @@ export default class HangedGame {
     this.showWinMessage(false);
     this.showLostMessage(false);
 
-    const input = document.querySelector("#letter");
-    
     if (MAX_ATTEMPTS === this.attempts) {
       this.showLostMessage(true);
+      this.hideRetryButton(true);
       return;
     }
 
-    input.focus();
-    input.value = this.currentLetter;
-    input.disabled = false;
+    $("#letter")
+      .val(this.currentLetter)
+      .trigger("focus")
+      .prop("disabled", false);
   }
 
   showLostMessage(status) {
-    const container = document.querySelector(".game-results");
-    const result = document.querySelector("#game-result");
-
-    result.innerText = "¡HAS PERDIDO!"
-    result.style = "color: red"
-    container.style = `visibility: ${status ? "visible" : "hidden"}`;
-
-    const currentWord = document.querySelector(".current-word");
-    const currentWordContainer =  document.querySelector(".current-word-container");
-
-    currentWord.innerText = this.currentWord;
-    currentWordContainer.style = `visibility: ${status ? "visible" : "hidden"}`;
+    $(".game-results").css({ visibility: status ? "visible" : "hidden" });
+    $("#game-result").html("¡HAS PERDIDO!").css({ color: "red" });
+    $(".current-word").html(this.currentWord);
+    $(".current-word-container").css({
+      visibility: status ? "visible" : "hidden",
+    });
   }
 
   showWinMessage(status) {
-    const div = document.querySelector(".game-results");
-    const result = document.querySelector("#game-result");
-    const currentWord = document.querySelector(".current-word-container");
-    
-    result.innerText = "¡HAS GANADO!"
-    result.style = "color: green"
-    
-    div.style = `visibility: ${status ? "visible" : "hidden"}`;
-    currentWord.style = `visibility: hidden`;
+    $(".game-results").css({ visibility: status ? "visible" : "hidden" });
+    $("#game-result").html("¡HAS GANADO!").css({ color: "green" });
+    $(".current-word-container").css({ visibility: "hidden" });
   }
 
   handleGameEvents() {
-    const input = document.querySelector("#letter");
-    input.addEventListener("keypress", this.handleChange);
-    input.focus();
+    const input = $("#letter");
+    input.on("keypress", this.handleChange);
+    input.trigger("focus");
 
-    const change = document.querySelector("#change");
-    change.addEventListener("click", this.changeWord);
+    const change = $("#change");
+    change.on("click", this.changeWord);
 
-    const goback = document.querySelector("#goback");
-    goback.addEventListener("click", this.handleGoBack);
+    const goback = $("#goback");
+    goback.on("click", this.handleGoBack);
 
-    const exit = document.querySelector("#exit");
-    exit.addEventListener("click", this.handleExit);
+    const exit = $("#exit");
+    exit.on("click", this.handleExit);
+
+    const reset = $(".reset");
+    reset.on("click", this.handleReset);
   }
 
-  
-  init() {
-    this.handleGameEvents()
-    this.renderResetButton();
+  async init() {
+    const categories = await getCategories();
+    this.category = categories[getFromState("category")];
+
+    this.currentWord = this.category[getRandomInt(0, this.category.length)];
+    this.chars = getChars(this.currentWord);
+
+    this.handleGameEvents();
     this.update();
   }
 }

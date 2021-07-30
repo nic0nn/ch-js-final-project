@@ -2,25 +2,22 @@ import { getFromState } from "./../utils.js";
 import HangedGame from "./HangedGame.js";
 
 const setProfile = () => {
-  const username = document.querySelector(".username");
-  username.innerHTML = `<b>Jugador: </b>${getFromState("user")}`
+  $(".username").html(`<b>Jugador: </b>${getFromState("user")}`);
 };
 
 const setCategory = () => {
-  const category = document.querySelector(".category")
-  category.innerHTML = `<b>Categoría: </b>${getFromState("category")}`
-}
+  $(".category").html(`<b>Categoría: </b>${getFromState("category")}`);
+};
 
 const setScore = () => {
-  const category = document.querySelector(".score")
-  category.innerHTML = `<b>Puntaje: </b>${getFromState("score")}`
-}
+  $(".score").html(`<b>Puntaje: </b>${getFromState("score")}`);
+};
 
 const initGame = () => {
-  setProfile()
-  setCategory()
-  setScore()
-  new HangedGame().init()
+  setProfile();
+  setCategory();
+  setScore();
+  new HangedGame().init();
 };
 
 setProfile();

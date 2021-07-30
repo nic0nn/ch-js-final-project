@@ -7,7 +7,7 @@ export const setState = (name, value) => {
 export const getFromState = (name) => {
   let s = JSON.parse(localStorage.getItem("state"))
   if (!s) {
-    redirect("./../")
+    redirect("index.html")
     return;
   }
   return s[name]
@@ -22,6 +22,9 @@ export const getRandomInt = (min, max) => {
 }
 
 export const redirect = url => {
-
   return window.location.assign(url)
+}
+
+export const getCategories = async () => {
+  return $.getJSON("./../assets/js/words.json")
 }

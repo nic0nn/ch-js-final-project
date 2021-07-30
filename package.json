@@ -13,6 +13,7 @@
     "sass": "^1.35.1"
   },
   "dependencies": {
+    "jquery": "^3.6.0",
     "moment": "^2.29.1"
   }
 }

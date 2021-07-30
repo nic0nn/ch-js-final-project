@@ -1,21 +1,21 @@
 import { redirect, setState } from "./utils.js"
 
 function login() {
-  const input = document.querySelector("#username");
-  setState("user", input.value)
+  const input = $("#username")
+  setState("user", input.val())
   setState("score", 0)
   redirect("./pages/categories.html")
 }
 
 function init() {
-  const button = document.querySelector("#login");
-  button.addEventListener("click", login);
-
-  const input = document.querySelector("#username")
-  input.onkeydown = function(e) {
+  const button = $("#login")
+  button.on("click", login)
+ 
+  const input = $("#username")
+  input.on("keydown", function(e) {
     if (e.keyCode === 13) login()
-  }
-  input.focus()
+  })
+  input.trigger("focus")
 }
 
 init()
