@@ -30,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   color: #212529;
   justify-content: space-around;
@@ -51,8 +51,8 @@ body {
 }
 
 .board .underscore {
-  font-size: 48px;
-  margin-right: 1em;
+  font-size: 28px;
+  margin-right: 0.75em;
 }
 
 .hanged {

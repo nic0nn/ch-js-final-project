@@ -149,7 +149,7 @@ export default class HangedGame {
     const score = oldScore + 10 - this.attempts;
     setState("score", score);
 
-    $(`.score`).val(`<b>Puntaje: </b>${score}`);
+    $(`.score`).html(`<b>Puntaje: </b>${score}`);
   };
 
   handleCompleted() {

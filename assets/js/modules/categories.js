@@ -9,7 +9,8 @@ export async function render() {
       <div class="card text-card">
         <p>${key}</p>
       </div>
-    `).on("click", function () {
+    `);
+      card.on("click", function () {
         setState("category", key);
         redirect("./game.html");
       });
